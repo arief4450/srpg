@@ -6621,7 +6621,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         BattleManager.setSrpgBattleStatusWindow(this._srpgBattleStatusWindowLeft, this._srpgBattleStatusWindowRight);
     };
 
-    // SRPG戦闘用のウィンドウを作る Create a window for SRPG combat
+    // SRPG戦闘用のウィンドウを作る Create a result window for SRPG combat
     Scene_Battle.prototype.createSrpgBattleResultWindow = function() {
         this._srpgBattleResultWindow = new Window_SrpgBattleResult($gameParty.battleMembers()[0]);
         this._srpgBattleResultWindow.openness = 0;
