@@ -6388,27 +6388,27 @@ Window_WinLoseCondition.prototype.refresh = function() {
     var _SRPG_BattleManager_initMembers = BattleManager.initMembers;
     BattleManager.initMembers = function() {
         _SRPG_BattleManager_initMembers.call(this);
-        this._srpgBattleStatusWindowLeft = null;
-        this._srpgBattleStatusWindowRight = null;
+        //this._srpgBattleStatusWindowLeft = null;
+        //this._srpgBattleStatusWindowRight = null;
         this._srpgBattleResultWindow = null;
     };
 
     //ステータスウィンドウのセット
-    BattleManager.setSrpgBattleStatusWindow = function(left, right) {
+    /*BattleManager.setSrpgBattleStatusWindow = function(left, right) {
         this._srpgBattleStatusWindowLeft = left;
         this._srpgBattleStatusWindowRight = right;
-    };
+    };*/
 
     //ステータスウィンドウのリフレッシュ
     var _SRPG_BattleManager_refreshStatus = BattleManager.refreshStatus;
-    BattleManager.refreshStatus = function() {
+    /*BattleManager.refreshStatus = function() {
         if ($gameSystem.isSRPGMode() == true) {
             this._srpgBattleStatusWindowLeft.refresh();
             this._srpgBattleStatusWindowRight.refresh();
         } else {
             _SRPG_BattleManager_refreshStatus.call(this);
         }
-    };
+    };*/
 
     //リザルトウィンドウのセット
     BattleManager.setSrpgBattleResultWindow = function(window) {
@@ -6592,14 +6592,14 @@ Window_WinLoseCondition.prototype.refresh = function() {
     var _SRPG_Scene_Battle_createAllWindows = Scene_Battle.prototype.createAllWindows;
     Scene_Battle.prototype.createAllWindows = function() {
         _SRPG_Scene_Battle_createAllWindows.call(this);
-        this.createSprgBattleStatusWindow();
+        //this.createSprgBattleStatusWindow();
         if ($gameParty.battleMembers()[0] && $gameParty.battleMembers()[0].isAlive()) {
             this.createSrpgBattleResultWindow();
         }
     };
 
     // SRPG戦闘用のウィンドウを作る Create a window for SRPG combat
-    Scene_Battle.prototype.createSprgBattleStatusWindow = function() {
+    /*Scene_Battle.prototype.createSprgBattleStatusWindow = function() {
         this._srpgBattleStatusWindowLeft = new Window_SrpgBattleStatus(0);
         this._srpgBattleStatusWindowRight = new Window_SrpgBattleStatus(1);
         this._srpgBattleStatusWindowLeft.openness = 0;
@@ -6619,7 +6619,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         this.addWindow(this._srpgBattleStatusWindowLeft);
         this.addWindow(this._srpgBattleStatusWindowRight);
         BattleManager.setSrpgBattleStatusWindow(this._srpgBattleStatusWindowLeft, this._srpgBattleStatusWindowRight);
-    };
+    };*/
 
     // SRPG戦闘用のウィンドウを作る Create a result window for SRPG combat
     Scene_Battle.prototype.createSrpgBattleResultWindow = function() {
@@ -6631,7 +6631,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
 
     //ステータスウィンドウのアップデート Status Window Update
     var _SRPG_Scene_Battle_updateStatusWindow = Scene_Battle.prototype.updateStatusWindow;
-    Scene_Battle.prototype.updateStatusWindow = function() {
+    /*Scene_Battle.prototype.updateStatusWindow = function() {
         if ($gameSystem.isSRPGMode() == true) {
             this._statusWindow.close();
             if ($gameMessage.isBusy()) {
@@ -6646,18 +6646,18 @@ Window_WinLoseCondition.prototype.refresh = function() {
         } else {
             _SRPG_Scene_Battle_updateStatusWindow.call(this);
         }
-    };
+    };*/
 
     //ステータスウィンドウのリフレッシュ Refresh Status Window
     var _SRPG_Scene_Battle_refreshStatus = Scene_Battle.prototype.refreshStatus;
-    Scene_Battle.prototype.refreshStatus = function() {
+    /*Scene_Battle.prototype.refreshStatus = function() {
         if ($gameSystem.isSRPGMode() == true) {
             this._srpgBattleStatusWindowLeft.refresh();
             this._srpgBattleStatusWindowRight.refresh();
         } else {
             _SRPG_Scene_Battle_refreshStatus.call(this);
         }
-    };
+    };*/
 
 //====================================================================
 // Map Battle System
