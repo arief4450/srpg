@@ -6649,8 +6649,8 @@ Window_WinLoseCondition.prototype.refresh = function() {
     };*/
 
     //ステータスウィンドウのリフレッシュ Refresh Status Window
-    var _SRPG_Scene_Battle_refreshStatus = Scene_Battle.prototype.refreshStatus;
-    /*Scene_Battle.prototype.refreshStatus = function() {
+    /*var _SRPG_Scene_Battle_refreshStatus = Scene_Battle.prototype.refreshStatus;
+    Scene_Battle.prototype.refreshStatus = function() {
         if ($gameSystem.isSRPGMode() == true) {
             this._srpgBattleStatusWindowLeft.refresh();
             this._srpgBattleStatusWindowRight.refresh();
