@@ -1290,6 +1290,25 @@
     // enemy_action：エネミーの実際の行動を行う状態
     // invoke_action：戦闘を実行している状態
     // after_battle：戦闘終了後の処理を呼び出す状態
+
+    
+    //Returns the subphase of the battle. Used within each Battle Phase to control the progress of the process.
+    //initialize: Initialization state
+    //normal: No action actor is selected
+    //actor_move: The movement range is displayed and the movement destination is selected.
+    //ctor_target: The state in which the action target is selected
+    //status_window: The status window is open
+    //actor_command_window: The actor command window is open
+    //battle_window: The attack confirmation window is open
+    //auto_actor_command: A state in which automatic action actors are decided in the order of events.
+    //auto_actor_move: A state in which an automatic action actor decides where to move and moves.
+    //auto_actor_action: The state in which the actual action of the automatic action actor is performed.
+    //enemy_command: A state in which the actions of enemies are decided in the order of events.
+    //enemy_move: The state where the enemy decides the destination and moves
+    //enemy_action: The state in which the actual action of the enemy is performed.
+    //invoke_action: The state of executing a battle
+    //after_battle: State to call the process after the battle is over
+
     Game_System.prototype.isSubBattlePhase = function() {
         return this._isSubBattlePhase;
     };
@@ -2665,7 +2684,7 @@
     };
 
     // SRPG戦闘中にはallMembersで呼び出す配列を変える→メニューで戦闘参加アクターを呼び出す
-    var _SRPG_Game_Party_allMembers = Game_Party.prototype.allMembers;
+    /*var _SRPG_Game_Party_allMembers = Game_Party.prototype.allMembers;
     Game_Party.prototype.allMembers = function() {
         if ($gameSystem.isSRPGMode() == true && $gameSystem.isSubBattlePhase() !== 'initialize') {
             var _list = [];
@@ -2677,7 +2696,7 @@
         } else {
             return _SRPG_Game_Party_allMembers.call(this);
         }
-    };
+    };*/
 
     // セーブファイル用の処理
     var _SRPG_Game_Party_charactersForSavefile = Game_Party.prototype.charactersForSavefile;
@@ -6825,6 +6844,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
 			!this._srpgBattleResultWindow.isOpening() && !this.isBusy()) {
 				if ($gameParty.battleMembers()[0] && $gameParty.battleMembers()[0].isAlive()) $gameParty.battleMembers()[0].onAllActionsEnd();
 				if ($gameParty.battleMembers()[1] && $gameParty.battleMembers()[1].isAlive()) $gameParty.battleMembers()[1].onAllActionsEnd();
+                //if ($gameParty.battleMembers()[2] && $gameParty.battleMembers()[2].isAlive()) $gameParty.battleMembers()[2].onAllActionsEnd();
 				if ($gameTroop.members()[0] && $gameTroop.members()[0].isAlive()) $gameTroop.members()[0].onAllActionsEnd();
 				if ($gameTroop.members()[1] && $gameTroop.members()[1].isAlive()) $gameTroop.members()[1].onAllActionsEnd();
 				var showResults = this.processSrpgVictory();
