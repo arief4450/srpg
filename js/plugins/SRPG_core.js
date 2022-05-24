@@ -5189,7 +5189,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         this.addWindow(this._itemWindow);
     };
 
-    // 戦闘開始ウィンドウを作る
+    // 戦闘開始ウィンドウを作る Create a battle start window
     Scene_Map.prototype.createSrpgBattleWindow = function() {
         this._mapSrpgBattleWindow = new Window_SrpgBattle();
         this._mapSrpgBattleWindow.x = Math.max((Graphics.boxWidth - this._mapSrpgBattleWindow.windowWidth()) / 2, 120);
@@ -5604,7 +5604,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         $gameSystem.setSubBattlePhase('actor_target');
     };
 
-    //戦闘開始コマンド・戦闘開始
+    //戦闘開始コマンド・戦闘開始 Battle start command ・ Battle start
     Scene_Map.prototype.commandBattleStart = function() {
         var actionArray = $gameSystem.srpgBattleWindowNeedRefresh()[1];
         var targetArray = $gameSystem.srpgBattleWindowNeedRefresh()[2];
@@ -5612,9 +5612,10 @@ Window_WinLoseCondition.prototype.refresh = function() {
         $gameSystem.clearSrpgBattleWindowNeedRefresh();
         $gameSystem.setSubBattlePhase('invoke_action');
         this.srpgBattleStart(actionArray, targetArray);
+
     };
 
-    //戦闘開始コマンド・キャンセル
+    //戦闘開始コマンド・キャンセル Battle start command cancel
     Scene_Map.prototype.selectPreviousSrpgBattleStart = function() {
         var battlerArray = $gameSystem.srpgBattleWindowNeedRefresh()[1];
         $gameSystem.setSrpgActorCommandStatusWindowNeedRefresh(battlerArray);
@@ -6151,7 +6152,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         return candidatePos[Math.randomInt(candidatePos.length)];
     };
 
-    //自動行動アクター&エネミーの戦闘の実行
+    //自動行動アクター&エネミーの戦闘の実行 Automatic Action Actor & Enemy Combat Execution
     Scene_Map.prototype.srpgInvokeAutoUnitAction = function() {
         if (!$gameTemp.targetEvent()) {
             var actionArray = $gameSystem.EventToUnit($gameTemp.activeEvent().eventId());
@@ -6174,7 +6175,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         }
     };
 
-    //戦闘処理の実行
+    //戦闘処理の実行 Execution of battle processing
     Scene_Map.prototype.srpgBattleStart = function(actionArray, targetArray) {
         $gameParty.clearSrpgBattleActors();
         $gameTroop.clearSrpgBattleEnemys();
@@ -6212,7 +6213,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
         } else {
             BattleManager.setup(1, false, true);
         }
-        //対象の行動を設定
+        //対象の行動を設定 Set the target behavior
         if (actionArray[1] != targetArray[1]) {
             targetArray[1].srpgMakeNewActions();
             if (actionArray[0] === 'actor' && targetArray[0] === 'enemy' &&
@@ -6232,7 +6233,7 @@ Window_WinLoseCondition.prototype.refresh = function() {
             targetArray[1].clearActions();
         }
         this.preBattleSetDirection();
-        //行動回数追加スキルなら行動回数を追加する
+        //行動回数追加スキルなら行動回数を追加する Add the number of actions Add the number of actions if the skill
         var addActionNum = Number(actionArray[1].action(0).item().meta.addActionTimes);
         if (addActionNum && addActionNum > 0) {
             actionArray[1].SRPGActionTimesAdd(addActionNum);
@@ -6241,9 +6242,9 @@ Window_WinLoseCondition.prototype.refresh = function() {
         this.eventBeforeBattle();
     };
 
-    // 戦闘開始時に向きを修正する
+    // 戦闘開始時に向きを修正する Correct the orientation at the beginning of the battle
     Scene_Map.prototype.preBattleSetDirection = function() {
-        if ($gameTemp.activeEvent() == $gameTemp.targetEvent()) return;  // 自分自身の時は向きを修正しない
+        if ($gameTemp.activeEvent() == $gameTemp.targetEvent()) return;  // 自分自身の時は向きを修正しない Do not correct the orientation when you are yourself
         var differenceX = $gameTemp.activeEvent().posX() - $gameTemp.targetEvent().posX();
         var differenceY = $gameTemp.activeEvent().posY() - $gameTemp.targetEvent().posY();
         if ($gameMap.isLoopHorizontal() == true) {
